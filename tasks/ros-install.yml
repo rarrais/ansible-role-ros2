@@ -1,3 +1,5 @@
+---
+# sudo apt update && sudo apt install curl gnupg2 lsb-release
 - name: Install dependencies for setting up sources
   apt:
     name: "{{ packages }}"
@@ -6,3 +8,24 @@
     - curl
     - gnupg2
     - lsb-release
+
+# curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+- name: Setup ROS2 keys
+  apt_key:
+    url: https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc
+    state: present
+
+# sudo sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+- name: Setup ROS2 sources
+  apt_repository:
+    repo: "deb http://packages.ros.org/ros2/ubuntu {{ ansible_distribution_release }} main"
+    state: present
+    filename: ros2-latest
+
+- name: Install ROS2
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+      - ros-dashing-ros-base
