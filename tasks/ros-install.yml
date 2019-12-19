@@ -22,6 +22,7 @@
     state: present
     filename: ros2-latest
 
+# sudo apt install ros-dashing-ros-base
 - name: Install ROS2
   apt:
     name: "{{ packages }}"
@@ -29,3 +30,9 @@
   vars:
     packages:
       - ros-dashing-ros-base
+
+# echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
+- name: Update .bashrc with /opt/ros/<ros_distribution>/setup.bash
+  lineinfile:
+    path: /home/ubuntu/.bashrc
+    line: source /opt/ros/dashing/setup.bash
