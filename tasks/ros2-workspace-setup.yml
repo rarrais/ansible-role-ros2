@@ -1,0 +1,23 @@
+---
+# Worskspace setup task
+
+- name: Create a ROS workspace
+  file:
+    dest: "/home/{{ ros2_user.name }}/{{ dev_ws }}/src"
+    state: directory
+    owner: "{{ ros2_user.name }}"
+    group: "{{ ros2_user.group }}"
+
+- name: Build the workspace with colon
+  shell: source /opt/ros/{{ ros2_distribution }}/setup.bash && colcon build
+  args:
+    chdir: /home/{{ ros2_user.name }}/{{ dev_ws }}
+    executable: /bin/bash
+    creates: install/setup.bash
+  become: yes
+  become_user: "{{ ros2_user.name }}"
+
+- name: Update .bashrc with install/setup.bash
+  lineinfile:
+    path: /home/{{ ros2_user.name }}/.bashrc
+    line: source /home/{{ ros2_user.name }}/{{ dev_ws }}/install/setup.bash

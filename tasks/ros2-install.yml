@@ -12,13 +12,13 @@
 # curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 - name: Setup ROS2 keys
   apt_key:
-    url: "{{ ros_gpg_key_url }}"
+    url: "{{ ros2_gpg_key_url }}"
     state: present
 
 # sudo sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
 - name: Setup ROS2 sources
   apt_repository:
-    repo: "deb {{ ros_repository_url }} {{ ansible_distribution_release }} main"
+    repo: "deb {{ ros2_repository_url }} {{ ansible_distribution_release }} main"
     state: present
     filename: ros2-latest
 
@@ -29,10 +29,26 @@
     update_cache: yes
   vars:
     packages:
-      - "{{ 'ros-' + ros_distribution + '-' + ros_configuration }}"
+      - "{{ 'ros-' + ros2_distribution + '-' + ros2_configuration }}"
 
-# echo "source /opt/ros/dashing/setup.bash" >> ~/.bashrc
+# echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
 - name: Update .bashrc with /opt/ros/<ros_distribution>/setup.bash
   lineinfile:
-    path: /home/{{ ros_user.name }}/.bashrc
-    line: source /opt/ros/{{ ros_distribution }}/setup.bash
+    path: /home/{{ ros2_user.name }}/.bashrc
+    line: source /opt/ros/{{ ros2_distribution }}/setup.bash
+
+# echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
+- name: Update .bashrc with ROS_DOMAIN_ID
+  lineinfile:
+    path: /home/{{ ros2_user.name }}/.bashrc
+    line: export ROS_DOMAIN_ID={{ ros2_domain_id }}
+
+# sudo apt install python3-argcomplete
+- name: Install argcomplete (optional)
+  apt:
+    name: python3-argcomplete
+  when: install_argcomplete == true
+
+- name: Install colcon to build packages
+  apt:
+    name: python3-colcon-common-extensions

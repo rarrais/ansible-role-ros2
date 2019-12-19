@@ -1,0 +1,11 @@
+---
+# Install ROS2 packages task
+
+- name: Install ROS2 Packages
+  apt:
+    name: "{{ packages }}"
+    allow_unauthenticated: yes
+  vars:
+    packages: "{{ 'ros-' + ros2_distribution + '-' + item }}"
+  with_items: "{{ ros2_packages }}"
+  when: (ros2_packages is defined) and (ros2_packages is not none)

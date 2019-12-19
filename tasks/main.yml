@@ -1,6 +1,14 @@
 ---
 # Main task
 
-- name: Install ROS
-  include: ros-install.yml
-  tags: ros-install
+- name: Install ROS2
+  include: ros2-install.yml
+  tags: ros2-install
+
+- name: ROS2 Workspace Setup
+  include: ros2-workspace-setup.yml
+  tags: ros2-workspace-setup
+
+- name: ROS2 Packages Install
+  include: ros2-packages-install.yml
+  tags: ros2-packages-install
