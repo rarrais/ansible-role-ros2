@@ -8,8 +8,8 @@ ros2_repository_url: http://packages.ros.org/ros2/ubuntu
 # Ubuntu Bionic (18.04) Options: bouncy; crystal; dashing (LTS); eloquent
 ros2_distribution: dashing
 
-# Options: ros-desktop (recommended); ros-base (bare bones)
-ros2_configuration: ros-base
+# Options: desktop (recommended); ros-base (bare bones)
+ros2_configuration: desktop
 
 # Default username and group for catkin_ws installation
 ros2_user:

@@ -25,8 +25,8 @@ Available variables are listed below, along with default values (see `defaults/m
   # Ubuntu Bionic (18.04) Options: bouncy; crystal; dashing (LTS); eloquent
   ros2_distribution: dashing
 
-  # Options: ros-desktop (recommended); ros-base (bare bones)
-  ros2_configuration: ros-base
+  # Options: desktop (recommended); ros-base (bare bones)
+  ros2_configuration: desktop
 
   # Default username and group for catkin_ws installation
   ros2_user:
@@ -62,7 +62,7 @@ Example to install ROS desktop-full configuration with turtlesim on the host sys
     ros2_user:
         name: rarrais
         group: rarrais
-    ros2_configuration: ros-desktop
+    ros2_configuration: desktop
     ros2_packages:
       - turtlesim
   roles:
