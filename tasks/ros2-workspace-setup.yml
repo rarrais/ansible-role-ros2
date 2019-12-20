@@ -14,7 +14,7 @@
     chdir: /home/{{ ros2_user.name }}/{{ dev_ws }}
     executable: /bin/bash
     creates: install/setup.bash
-  # become: yes
+    become: yes
   become_user: "{{ ros2_user.name }}"
 
 - name: Update .bashrc with install/setup.bash
