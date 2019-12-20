@@ -35,6 +35,8 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+  - 'sudo docker exec "$(cat ${container_id})" bin/bash -c "[ -f /opt/ros/${ros2_distro}/setup.bash ] && (echo setup.bash exists under /opt/ros/${ros2_distro}/ && exit 0) || (echo setup.bash not found under /opt/ros/${ros2_distro}/ && exit 1)"'
+  - 'sudo docker exec "$(cat ${container_id})" bin/bash -c "[ -f /home/${distribution}/dev_ws/install/setup.bash ] && (echo setup.bash exists under /home/${distribution}/dev_ws/install/ && exit 0) || (echo setup.bash not found under /home/${distribution}/dev_ws/install/ && exit 1)"'
   - 'sudo docker rm -f "$(cat ${container_id})"'
 
 
