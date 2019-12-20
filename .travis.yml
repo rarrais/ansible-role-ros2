@@ -7,7 +7,16 @@ sudo: required
 env:
   - distribution: ubuntu
     version: bionic
+    ros2_distro: bouncy
+  - distribution: ubuntu
+    version: bionic
+    ros2_distro: crystal
+  - distribution: ubuntu
+    version: bionic
     ros2_distro: dashing
+  - distribution: ubuntu
+    version: bionic
+    ros2_distro: eloquent
 
 services:
   - docker
