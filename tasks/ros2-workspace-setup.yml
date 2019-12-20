@@ -1,7 +1,7 @@
 ---
-# Worskspace setup task
+# ROS2 worskspace setup task
 
-- name: Create a ROS workspace
+- name: Create a ROS2 workspace
   file:
     dest: "/home/{{ ros2_user.name }}/{{ dev_ws }}/src"
     state: directory

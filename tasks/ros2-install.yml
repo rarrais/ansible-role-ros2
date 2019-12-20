@@ -47,7 +47,7 @@
 - name: Install argcomplete (optional)
   apt:
     name: python3-argcomplete
-  when: install_argcomplete == true
+  when: install_argcomplete
 
 - name: Install colcon to build packages
   apt:
