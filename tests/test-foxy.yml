@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars:
+    ros2_distribution: foxy
+  roles:
+    - ansible-role-ros2

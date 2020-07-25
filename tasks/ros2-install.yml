@@ -3,6 +3,7 @@
 - name: Install dependencies for setting up sources
   apt:
     name: "{{ packages }}"
+    update_cache: yes
   vars:
     packages:
     - curl
@@ -22,7 +23,7 @@
     state: present
     filename: ros2-latest
 
-# sudo apt install ros-dashing-ros-base
+# sudo apt install ros-<distro>-ros-base
 - name: Install ROS2
   apt:
     name: "{{ packages }}"

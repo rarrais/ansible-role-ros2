@@ -22,8 +22,8 @@ Available variables are listed below, along with default values (see `defaults/m
   ros2_gpg_key_url: https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc
   ros2_repository_url: http://packages.ros.org/ros2/ubuntu
 
-  # Ubuntu Bionic (18.04) Options: bouncy; crystal; dashing (LTS); eloquent
-  ros2_distribution: dashing
+  # Options: bouncy; crystal; dashing (LTS); eloquent; foxy (LTS)
+  ros2_distribution: foxy
 
   # Options: desktop (recommended); ros-base (bare bones)
   ros2_configuration: desktop

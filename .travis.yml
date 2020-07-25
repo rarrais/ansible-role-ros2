@@ -17,6 +17,16 @@ env:
   - distribution: ubuntu
     version: bionic
     ros2_distro: eloquent
+  - distribution: ubuntu
+    version: focal
+    ros2_distro: foxy
+
+jobs:
+  allow_failures: # https://github.com/ansible/ansible/issues/68645
+    - env: 
+      - distribution: ubuntu
+        version: focal
+        ros2_distro: foxy
 
 services:
   - docker
